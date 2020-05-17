@@ -1,5 +1,8 @@
 <?php
 
+Route::get('admin-logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('auth.very_basic');
+Route::get('/home',      'ViewTeamController@index')->name('home');
+
 Route::group(['prefix' => 'auth/slack'], function () {
     Route::get('access',   'Auth\SlackAuthController@getPermission');
     Route::get('',         'Auth\SlackAuthController@redirectToProvider');

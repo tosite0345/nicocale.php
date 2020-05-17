@@ -9,14 +9,16 @@
     "license": "MIT",
     "require": {
         "php": "^7.3.2",
-        "arcanedev/log-viewer": "^4.7",
         "deployer/deployer": "^6.4",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "^6.0",
+        "laravel/helpers": "^1.2",
         "laravel/passport": "^7.2",
         "laravel/tinker": "^1.0",
         "moontoast/math": "^1.1",
-        "mpociot/socialite-slack": "^1.2"
+        "mpociot/socialite-slack": "^1.2",
+        "olssonm/l5-very-basic-auth": "^6.3",
+        "rap2hpoutre/laravel-log-viewer": "^1.6"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
