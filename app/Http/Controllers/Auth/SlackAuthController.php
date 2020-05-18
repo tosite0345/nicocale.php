@@ -48,8 +48,10 @@ class SlackAuthController extends Controller
 
         \DB::transaction(function () use ($user) {
             $authUser = $this->firstOrCreateUser($user);
-            \Auth::login($authUser, true);
-            if ($authUser->slack_token != $user->token) {
+            $token = auth('api')->login($authUser);
+            session(['jwt_token' => $token]);
+            auth('web')->login($authUser);
+            if ($authUser->slack_token !== $user->token) {
                 $authUser->slack_token = $user->token;
                 $authUser->save();
             }
@@ -75,7 +77,7 @@ class SlackAuthController extends Controller
         return redirect()->route('login');
     }
 
-    protected function firstOrCreateUser($slackUser)
+    protected function firstOrCreateUser($slackUser): \App\User
     {
         $authUser = \App\User::where('slack_user_id', $slackUser->id)->first();
         if ($authUser) return $authUser;
